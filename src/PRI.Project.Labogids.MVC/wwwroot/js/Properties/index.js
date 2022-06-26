@@ -41,6 +41,13 @@
         },
         addProperty: async function () {
             window.location.href = '/Properties/AddProperty'
+        },
+        checkExist: async function (e) {
+            let element = document.getElementById('searchInput');
+            let value = element.value;
+            let apiUrl = `${this.propertiesApiUrl}/${value}`;
+            let response = await this.getData(apiUrl);
+            this.properties = response;
         }
     },
 });

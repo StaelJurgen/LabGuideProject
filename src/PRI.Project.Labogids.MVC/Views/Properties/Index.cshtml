@@ -2,8 +2,8 @@
     <h1>{{pageTitle}}</h1>
 
     <div class="float-right">
-        <input type="search" autocomplete="on" v-model="needle" placeholder="Zoek...">
-        <button type="button" v-on:click="getSelection" class="btn btn-sm text-white" style="background-color:rgb(122,166,211)">Zoeken</button>
+        <input type="search" id="searchInput" v-model="needle" v-on:keyup="event => checkExist(event)" placeholder="Zoek...">
+        @*<button type="button" v-on:click="getSelection" class="btn btn-sm text-white" style="background-color:rgb(122,166,211)">Zoeken</button>*@
         <p></p>
         <button type="button" class="btn text-white" style="background-color:rgb(149,199,61)" v-on:click="addProperty" v-if="isAdmin">Nieuwe bepaling aanmaken</button>
     </div>
