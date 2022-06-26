@@ -1,0 +1,20 @@
+﻿<div id="app">
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+    <h1 v-if="!specimenDeleted">{{pageTitle}}</h1>
+    <div v-if="!specimenDeleted">
+        <div class="form-group">
+            <img v-bind:src="specimen.image" class="card-img-top" style="width: 10%">
+        </div>
+        <footer>
+            <a href="https://localhost:5001/Specimens" class="btn text-white" style="background-color:rgb(122,166,211)">Terug</a>
+            <a v-on:click="editSpecimen" v-bind:id="specimen.id" class="btn btn-warning">Bijwerken</a>
+            <a v-if="isAdmin" v-on:click="getConfirmation" v-bind:id="specimen.id" class="btn btn-danger">Verwijderen</a>
+        </footer>
+    </div>
+</div>
+<script src="~/js/Specimens/details.js"></script>

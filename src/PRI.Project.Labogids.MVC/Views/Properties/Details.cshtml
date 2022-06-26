@@ -1,0 +1,38 @@
+﻿<div id="app">
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+    <h1 v-if="!propertyDeleted">{{pageTitle}}</h1>
+    <div v-if="!propertyDeleted">
+        <div class="form-group">
+            <ul class="list-unstyled">
+                <li>Synoniemen: {{property.synonym}}</li>
+                <li>Uitvoerend labo: {{property.laboratoryName}}</li>
+                <li>Aanvraagcode: {{property.requestCode}}</li>
+                <li>Monster: {{property.specimenName}}</li>
+                <li>
+                    Bewaarcondities:
+                    <ul v-for="storageCondition in property.storageConditions">
+                        <li>{{storageCondition.temperature}} gedurende {{storageCondition.timePeriod}} {{storageCondition.timeReference.toLowerCase()}}</li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>Referentiewaarden</h2>
+            <div id='referenceTable'>
+                <p></p>
+            </div>
+            <div v-if="property.name === 'Hemoglobine'">
+                <a href="https://www.stlucas.be/professionals/voor-artsen/labogidsen/item.aspx?ID=468">Link naar actuele labogids</a>
+            </div>
+        </div>
+        <footer>
+            <a href="https://localhost:5001/Properties" class="btn btn-secondary" style="background-color:rgb(122,166,211)">Terug</a>
+            <a v-if="isAdmin" href="https://localhost:5001/Properties/UpdateProperty" class="btn btn-secondary btn-warning">Bijwerken</a>
+            <a v-if="isAdmin" v-on:click="getConfirmation" v-bind:id="property.id" class="btn btn-danger">Verwijderen</a>
+        </footer>
+    </div>
+</div>
+<script src="~/js/Properties/details.js"></script>

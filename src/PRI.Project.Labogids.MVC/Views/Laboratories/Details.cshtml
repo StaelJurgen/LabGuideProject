@@ -1,0 +1,31 @@
+﻿<div id="app">
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+    <h1 v-if="!laboratoryDeleted">{{pageTitle}}</h1>
+    <div v-if="!laboratoryDeleted">
+        <div class="form-group">
+            <ul class="list-unstyled">
+                <li>{{laboratory.address}}</li>
+                <li>{{laboratory.postalCode}} {{laboratory.city}}</li>
+                <li>{{laboratory.country}}</li>
+                <li v-if="pageTitle==='AZ Sint-Lucas'"><a href="https://www.stlucas.be/professionals/voor-artsen/labogidsen.aspx?L=A">Labogids {{laboratory.name}}</a></li>
+            </ul>
+            <footer>
+                <a href="https://localhost:5001/Laboratories" class="btn btn-secondary" style="background-color:rgb(122,166,211)">Terug</a>
+                <a v-on:click="editLaboratory" v-bind:id="laboratory.id" class="btn btn-warning">Bijwerken</a>
+                <a v-on:click="getConfirmation" v-bind:id="laboratory.id" v-if="isLoggedIn && isAdmin" class="btn btn-danger">Verwijderen</a>
+            </footer>
+        </div>
+    </div>
+    @*<div v-if="laboratoryDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+        Het laboratorium werd verwijderd!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>*@
+</div>
+<script src="~/js/Laboratories/details.js"></script>

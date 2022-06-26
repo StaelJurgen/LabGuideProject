@@ -1,0 +1,113 @@
+﻿<div id="app">
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+    <h1>{{pageTitle}}</h1>
+    <p></p>
+    <div class="row">
+        <div class="col w-50 p-3" style="background-color:rgba(0,0,0,0.5)">
+            <h2>Bepaling</h2>
+            <form v-on:submit.prevent="addProperty" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Naam: </label>
+                    <input v-model="propertyModel.name" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Synoniemen: </label>
+                    <input v-model="propertyModel.synonyms" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Specimen: </label>
+                    <select v-model="propertyModel.specimenId" class="form-control">
+                        <option v-for="specimen in specimens" v-bind:value="specimen.id">
+                            {{specimen.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Uitvoerend labo: </label>
+                    <select v-model="propertyModel.laboratoryId" class="form-control">
+                        <option v-for="laboratory in laboratories" v-bind:value="laboratory.id">
+                            {{laboratory.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Aanvraagdefinitie: </label>
+                    <select v-model="propertyModel.requestDefinitionId" class="form-control">
+                        <option v-for="requestDefinition in requestDefinitions" v-bind:value="requestDefinition.id">
+                            {{requestDefinition.billingCode}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Aanvraagcode: </label>
+                    <input v-model="propertyModel.requestCode" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>TAT (turn around time): </label>
+                    <input v-model="propertyModel.turnAroundTime" type="number" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Tijdseenheid: </label>
+                    <select v-model="propertyModel.timePeriod" class="form-control">
+                        <option v-for="timeReference in timeReferences">
+                            {{timeReference.name}}
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary" style="background-color:rgb(149,199,61)">Opslaan</button>
+                <a v-if="!success" href="https://localhost:5001/Properties" class="btn btn-danger">Annuleren</a>
+                <a v-if="success" href="https://localhost:5001/Properties" class="btn btn-secondary" style="background-color:rgb(122,166,211)">Terug</a>
+            </form>
+        </div>
+        <div class="col w-50 p-3" style="background-color:rgba(0,0,0,0.5)">
+            <H2>Referentiewaarde</H2>
+            <form>
+                <div class="form-group" id="References">
+                    <div class="form-group">
+                        <label>Minimumwaarde: </label>
+                        <input v-model="referenceValueModel.minimumValue" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Maximumwaarde: </label>
+                        <input v-model="referenceValueModel.maximumValue" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Eenheid: </label>
+                        <input v-model="referenceValueModel.unit" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tekstwaarde: </label>
+                        <input v-model="referenceValueModel.stringValue" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Geslacht: </label>
+                        <select v-model="referenceValueModel.sex" class="form-control">
+                            <option v-for="sex in sexes">
+                                {{sex.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum leeftijd: </label>
+                        <input v-model="referenceValueModel.maximalAge" type="number" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tijdseenheid: </label>
+                        <select v-model="referenceValueModel.period" class="form-control">
+                            <option v-for="timeReference in timeReferences">
+                                {{timeReference.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <a class="btn btn-secondary" v-on:click="addReferenceValueToList" style="background-color:rgb(149,199,61)">Referentiewaarde opslaan</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/js/Properties/addProperty.js"></script>

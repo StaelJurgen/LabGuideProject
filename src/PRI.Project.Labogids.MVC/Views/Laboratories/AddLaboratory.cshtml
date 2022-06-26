@@ -1,0 +1,36 @@
+﻿<div id="app">
+    <h1>{{pageTitle}}</h1>
+        <div v-if="error" class="alert alert-danger" role="alert">
+            {{userMessage}}
+        </div>
+        <div v-if="success" class="alert alert-success" role="alert">
+            {{userMessage}}
+        </div>
+    <form v-on:submit.prevent="addLab" enctype="multipart/form-data" class="col col-lg-5 mx-auto p-3" style="background-color:rgba(0,0,0,0.5)">
+        <div class="form-group">
+            <label>Naam:</label>
+            <input type="text" v-model="addedLab.name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Adres:</label>
+            <input type="text" v-model="addedLab.address" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Postcode:</label>
+            <input type="number" v-model="addedLab.postalCode" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Stad:</label>
+            <input type="text" v-model="addedLab.city" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Land:</label>
+            <input type="text" v-model="addedLab.country" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-secondary" style="background-color:rgb(149,199,61)">Opslaan</button>
+        <button v-if="!success" v-on:click="goBack" class="btn btn-danger">Annuleren</button>
+        <button v-if="success" v-on:click="goBack" class="btn btn-secondary" style="background-color:rgb(122,166,211)">Terug</button>
+    </form>
+</div>
+
+<script src="~/js/Laboratories/addLaboratory.js"></script>

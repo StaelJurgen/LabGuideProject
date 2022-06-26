@@ -1,0 +1,22 @@
+﻿<div id="app">
+    <h1>{{pageTitle}}</h1>
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+    <form v-on:submit.prevent="updateSpec" enctype="multipart/form-data" class="col col-lg-5 mx-auto p-3" style="background-color:rgba(0,0,0,0.5)">
+        <div class="form-group">
+            <label>Naam:</label>
+            <input type="text" v-model="updatedSpec.name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Afbeelding:</label>
+            <input ref="image" type="file" class="form-control">
+        </div>
+        <button type="submit" class="btn text-white" style="background-color:rgb(149,199,61)">Opslaan</button>
+        <button v-if="!success" v-on:click="cancel" class="btn btn-danger">Annuleren</button>
+    </form>
+</div>
+<script src="~/js/Specimens/updateSpecimen.js"></script>

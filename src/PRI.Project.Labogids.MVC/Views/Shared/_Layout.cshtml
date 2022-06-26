@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PRI.Project.Labogids.MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/lib/axios/axios.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <img src="~/img/AZSintLucas.png" class="c-group-item img-fluid" />
+            <div class="container">
+                <img src="~/img/az_balk_web_130h.png" class="img-fluid" />
+                <div class="container card-img-overlay ">
+                    <div class="flex-grow-1" id="sharedLayout">
+                        <ul class="navbar-nav navbar-brand pl-5 ml-5">
+                            <li class="nav-item" v-if="!isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Registreren</a>
+                            </li>
+                            <li class="nav-item" v-if="!isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Properties" asp-action="Index">Bepalingen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Laboratories" asp-action="Index">Laboratoria</a>
+                            </li>
+                            <li class="nav-item" v-if="isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Specimens" asp-action="Index">Monsters</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav navbar-brand">
+                            <li class="nav-item" v-if="isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="RequestDefinitions" asp-action="Index">Aanvraagdefinities</a>
+                            </li>
+                            <li class="nav-item" v-if="isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="StorageConditions" asp-action="Index">Bewaarcondities</a>
+                            </li>
+                            <li class="nav-item" v-if="isLoggedIn">
+                                <a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="ReferenceValues" asp-action="Index">Referentiewaarden</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <img src="~/img/HoWestBrugge.png" class="c-group-item h-100 p-3 img-fluid" />
+        </nav>
+    </header>
+    <div class="card bg-dark text-white">
+        <img src="~/img/Laboratory.jpg" class="card-img" />
+        <div class="container card-img-overlay">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="fixed-bottom">
+        <div class="text-sm-center">
+            &copy; 2022 - PRI.Project.Labogids.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿<div id="app">
+    <h1>{{pageTitle}}</h1>
+    <div class="float-right">
+        <button type="button" class="btn text-white" v-on:click="addLaboratory" style="background-color:rgb(149,199,61)">Nieuw labo aanmaken</button>
+    </div>
+    <div class="form-group">
+        <ul class="list-unstyled">
+            <li v-for="laboratory in laboratories" v-bind:id="laboratory.id" v-on:click="showDetails(laboratory.id)">
+                <a v-bind:href="'https://localhost:5001/Laboratories/Details/' + laboratory.id"
+                   v-on:click="addLabIdToLocalStorage(laboratory.id)"
+                   class="text-white">{{laboratory.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="~/js/Laboratories/index.js"></script>
